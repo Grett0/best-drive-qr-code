@@ -1,0 +1,277 @@
+
+<!--Code by Manu & Grett avec source externe-->
+<html lang="fr">
+  <meta charset="utf-8">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <center>
+<!--Generation de champs-->
+    <div id="d1">
+        <input id="nimmat" class="hide" type="text" name="immat" placeholder="Numéro d'immat" style="Width:10%">
+        <input id="nclient" class="hide" type="text" name="client"placeholder="Nom du client" style="Width:10%">
+        <input id="nor" class="hide" type="text" name="or" placeholder="240101001" style="Width:10%" / onblur="incrementation()">
+        <input type="text" class="hide" size="17" id="bt" placeholder="S584123456" / onblur="codebarre()">
+        <input type="text" class="hide" size="20" id="url" placeholder="Numero de fiche" / onblur="creerQRC()">
+        <form><input id="RAZ" class="hide" type="submit" value="RAZ"></form>
+        <p><input id="rien" type="button" value="Imprimé véhicule"></p>
+        <label for="text"></label>
+    <input type="text" id="text" value="lien de fiche" />
+    <button onclick="generateQRCode()">Générer le QR Code</button>
+    <div id="qrcode"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        function generateQRCode() {
+            // Récupérer le texte ou l'URL à encoder
+            var text = document.getElementById('text').value;
+
+            // Vider le conteneur de QR code avant de générer un nouveau
+            document.getElementById("qrcode").innerHTML = "";
+
+            // Générer le QR code
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: text,
+                width: 128,  // Largeur du QR code
+                height: 128, // Hauteur du QR code
+            });
+        }
+    </script>
+
+
+    </div>
+        </center>
+<!--Incrementation x3-->
+<script>
+    function incrementation() {
+        var a = document.getElementById("nimmat").value;
+            document.getElementById("immat1").innerHTML = a;
+        var b = document.getElementById("nclient").value;
+            document.getElementById("client1").innerHTML = b;
+        var c = document.getElementById("nor").value;
+            document.getElementById("or1").innerHTML = c;
+        var d = document.getElementById("nimmat").value;
+            document.getElementById("immat2").innerHTML = d;
+        var e = document.getElementById("nclient").value;
+            document.getElementById("client2").innerHTML = e;
+        var f = document.getElementById("nor").value;
+            document.getElementById("or2").innerHTML = f; 
+        var x = document.getElementById("nimmat").value;
+            document.getElementById("immat").innerHTML = x;
+        var y = document.getElementById("nclient").value;
+            document.getElementById("client").innerHTML = y;
+        var Z = document.getElementById("nor").value;
+            document.getElementById("or").innerHTML = Z;
+}
+</script>
+<!--Fiche véhicule-->
+    </head>
+<table border="0" cellpadding="10" cellspacing="1" align="center">
+   <tr>
+        <td>
+            <center>
+            <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <img src="Images/Bestdrive.png" id="qrcode">
+                    
+                </center>
+                </td><tr></table></center>
+                    <center>
+                        <img width="205px" height="40px" src="white.gif" id="codbar">
+                    </center>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span style="text-decoration: underline;">Numéro OR :</span><br>
+            <center>
+            <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="or"></p>
+                </center>
+                </td><tr></table></center>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span style="text-decoration: underline;">Client :</span><br>
+            <center>
+            <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="client"></p>
+                </center>
+                </td><tr></table></center>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span style="text-decoration: underline;">Immatriculation :</span><br>
+            <center>
+            <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="immat"></p>
+                </center>
+                </td><tr></table></center>
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="3" align="center">
+   <tr>
+<!--Fiche à decouper clé + fiche-->
+        <hr></br></br>
+        <td><center><p><input id="imp" type="button" value="Vignette fiche" onclick="imprimer_page()"></p></center>
+        </td>
+        <td>
+            <img id='blanc' 
+                src="Images/blanc.jpeg"
+                alt="" 
+                title="" 
+                width="100" 
+                height="10">
+        </td>
+        <td><center><p><input id="imp" type="button" value="Porte clé" onclick="imprimer_page()"></p></center>
+        </td>  
+   </tr>
+   <tr>
+        <td>
+            <span style="text-decoration: underline;">Numéro OR :</span><br>
+            <center>
+            <table width="80%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="or1"></p>
+                </center>
+                </td><tr></table></center>
+        </td>
+        <td>
+        </td>
+        <td>
+            <span style="text-decoration: underline;">Numéro OR :</span><br>
+            <center>
+            <table width="80%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="or2"></p>
+                </center>
+                </td><tr></table></center>
+        </td> 
+        </tr>
+        <tr>
+        <td>
+            <span style="text-decoration: underline;">Client :</span><br>
+            <center>
+            <table width="80%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="client1"></p>
+                </center>
+                </td><tr></table></center>
+        </td>
+        <td>
+        </td>
+        <td>
+            <span style="text-decoration: underline;">Client :</span><br>
+            <center>
+            <table width="80%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="client2"></p>
+                </center>
+                </td><tr></table></center>
+        </td>        
+    </tr>
+    <tr>
+        <td>
+            <span style="text-decoration: underline;">Immatriculation :</span><br>
+            <center>
+            <table width="80%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="immat1"></p>
+                </center>
+                </td><tr></table></center>
+        </td>
+        <td>
+        </td>
+        <td>
+            <span style="text-decoration: underline;">Immatriculation :</span><br>
+            <center>
+            <table width="80%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                    <p id="immat2"></p>
+                </center>
+                </td><tr></table></center>
+        </td>        
+    </tr>
+    <tr>
+        <td>
+            <center>
+            <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                <img src="Images/Bestdrive.png" id="qrcodea">
+                </center>
+                </td><tr></table></center>
+                    <center>
+                        <img width="105px" src="white.gif" id="codbar1">
+                    </center>
+    </td>
+        <td>     
+        </td>
+        <td>
+            <center>
+            <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
+                <center>
+                <img src="Images/Bestdrive.png" id="qrcodeb">
+                </center>
+                </td><tr></table></center>
+                    <center>
+                    <img width="105px" src="white.gif" id="codbar2">
+                </center>
+        </td>
+    </tr>
+</table>
+<!--Script de camouflage champs-->
+    <script>
+        let d1 = document.getElementById("d1");
+        let nimmat = document.getElementById("nimmat");
+        let nclient = document.getElementById("nclient");
+        let nor = document.getElementById("nor");
+        let bt = document.getElementById("bt");
+        let url = document.getElementById("url");
+
+        d1.addEventListener("mouseover", () => {nimmat.style.display = "block";});
+        d1.addEventListener("mouseout", () => {nimmat.style.display = "none";});
+        d1.addEventListener("mouseover", () => {nclient.style.display = "block";});
+        d1.addEventListener("mouseout", () => {nclient.style.display = "none";});
+        d1.addEventListener("mouseover", () => {nor.style.display = "block";});
+        d1.addEventListener("mouseout", () => {nor.style.display = "none";});
+        d1.addEventListener("mouseover", () => {bt.style.display = "block";});
+        d1.addEventListener("mouseout", () => {bt.style.display = "none";});
+        d1.addEventListener("mouseover", () => {url.style.display = "block";});
+        d1.addEventListener("mouseout", () => {url.style.display = "none";});
+        d1.addEventListener("mouseover", () => {RAZ.style.display = "block";});
+        d1.addEventListener("mouseout", () => {RAZ.style.display = "none";});
+
+    </script>
+<!--Script de generation de QRcode-->
+    <script>
+        function creerQRC() {
+        var url = document.getElementById("url").value;
+        var qrcode = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=200x200&choe=UTF-8&chld=L|0';
+            document.getElementById("qrcode").src = qrcode;
+        var qrcodea = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=100x100&choe=UTF-8&chld=L|0';
+            document.getElementById("qrcodea").src = qrcodea;
+        var qrcodeb = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=100x100&choe=UTF-8&chld=L|0';
+            document.getElementById("qrcodeb").src = qrcodeb;
+        var bt = document.getElementById("bt").value;
+        var codbar = 'https://barcode.tec-it.com/barcode.ashx?data=' + bt +'&code=Code128&translate-esc=on';
+            document.getElementById("codbar").src = codbar;
+        var codbar1 = 'https://barcode.tec-it.com/barcode.ashx?data=' + bt +'&code=Code128&translate-esc=on';
+            document.getElementById("codbar1").src = codbar1;
+        var codbar2 = 'https://barcode.tec-it.com/barcode.ashx?data=' + bt +'&code=Code128&translate-esc=on';
+            document.getElementById("codbar2").src = codbar2;
+        }
+    </script>
+<!--Script d'impression de la page-->
+    <script>
+        function imprimer_page(){
+            window.print()
+        }
+    </script>
+<!--Created by Manu, Jimmy -->
+</html>
