@@ -4,23 +4,22 @@
   <meta charset="utf-8">
     <head>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
         <center>
 <!--Generation de champs-->
     <div id="d1">
-        <input id="nimmat" class="hide" type="text" name="immat" placeholder="Numéro d'immat" style="Width:10%">
-        <input id="nclient" class="hide" type="text" name="client"placeholder="Nom du client" style="Width:10%">
-        <input id="nor" class="hide" type="text" name="or" placeholder="240101001" style="Width:10%" / onblur="incrementation()">
-        <input type="text" class="hide" size="17" id="bt" placeholder="S584123456" / onblur="codebarre()">
-        <input type="text" class="hide" size="20" id="url" placeholder="Numero de fiche" / onblur="creerQRC()">
+        <input id="nimmat" type="text" class="hide" name="immat" placeholder="Numéro d'immat" style="Width:10%">
+        <input id="nclient" type="text" class="hide" name="client" placeholder="Nom du client" style="Width:10%">
+        <input id="nor" type="text" class="hide" name="or" placeholder="240101001" style="Width:10%" / onblur="incrementation()">
+        <input id="bt" type="text" class="hide" name="bt" placeholder="S584123456" size="17" / onblur="creerQRC()">
+        <!--<input id="url" type="text" class="hide" name="url" placeholder="Numero de fiche" size="20" / onblur="creerQRC()">-->
+        <label for="text"></label>
+        <input id="text" type="text" class="hide" value="lien de fiche" / onblur="generateQRCode()">
         <form><input id="RAZ" class="hide" type="submit" value="RAZ"></form>
         <p><input id="rien" type="button" value="Imprimé véhicule"></p>
-        <label for="text"></label>
-    <input type="text" id="text" value="lien de fiche" />
-    <button onclick="generateQRCode()">Générer le QR Code</button>
-    <div id="qrcode"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
+<!--Generation qrcode V2-->
     <script>
         function generateQRCode() {
             // Récupérer le texte ou l'URL à encoder
@@ -28,9 +27,21 @@
 
             // Vider le conteneur de QR code avant de générer un nouveau
             document.getElementById("qrcode").innerHTML = "";
+            document.getElementById("qrcode2").innerHTML = "";
+            document.getElementById("qrcode3").innerHTML = "";
 
             // Générer le QR code
             var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: text,
+                width: 128,  // Largeur du QR code
+                height: 128, // Hauteur du QR code
+            });
+            var qrcode2 = new QRCode(document.getElementById("qrcode2"), {
+                text: text,
+                width: 128,  // Largeur du QR code
+                height: 128, // Hauteur du QR code
+            });
+            var qrcode3 = new QRCode(document.getElementById("qrcode3"), {
                 text: text,
                 width: 128,  // Largeur du QR code
                 height: 128, // Hauteur du QR code
@@ -55,7 +66,7 @@
         var e = document.getElementById("nclient").value;
             document.getElementById("client2").innerHTML = e;
         var f = document.getElementById("nor").value;
-            document.getElementById("or2").innerHTML = f; 
+            document.getElementById("or2").innerHTML = f;
         var x = document.getElementById("nimmat").value;
             document.getElementById("immat").innerHTML = x;
         var y = document.getElementById("nclient").value;
@@ -72,8 +83,9 @@
             <center>
             <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
                 <center>
-                    <img src="Images/Bestdrive.png" id="qrcode">
-                    
+                    <!--<img src="Images/Bestdrive.png" id="qrcode">-->
+                    <div id="qrcode"></div>
+
                 </center>
                 </td><tr></table></center>
                     <center>
@@ -122,15 +134,15 @@
         <td><center><p><input id="imp" type="button" value="Vignette fiche" onclick="imprimer_page()"></p></center>
         </td>
         <td>
-            <img id='blanc' 
+            <img id='blanc'
                 src="Images/blanc.jpeg"
-                alt="" 
-                title="" 
-                width="100" 
+                alt=""
+                title=""
+                width="100"
                 height="10">
         </td>
         <td><center><p><input id="imp" type="button" value="Porte clé" onclick="imprimer_page()"></p></center>
-        </td>  
+        </td>
    </tr>
    <tr>
         <td>
@@ -152,7 +164,7 @@
                     <p id="or2"></p>
                 </center>
                 </td><tr></table></center>
-        </td> 
+        </td>
         </tr>
         <tr>
         <td>
@@ -174,7 +186,7 @@
                     <p id="client2"></p>
                 </center>
                 </td><tr></table></center>
-        </td>        
+        </td>
     </tr>
     <tr>
         <td>
@@ -196,27 +208,30 @@
                     <p id="immat2"></p>
                 </center>
                 </td><tr></table></center>
-        </td>        
+        </td>
     </tr>
     <tr>
         <td>
             <center>
             <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
                 <center>
-                <img src="Images/Bestdrive.png" id="qrcodea">
+                <!--<img src="Images/Bestdrive.png" id="qrcodea">-->
+                <div id="qrcode2"></div>
                 </center>
                 </td><tr></table></center>
                     <center>
                         <img width="105px" src="white.gif" id="codbar1">
                     </center>
     </td>
-        <td>     
+        <td>
         </td>
         <td>
             <center>
             <table width="50%" border ="1" cellspacing="1" cellpadding="1"><tr><td>
                 <center>
-                <img src="Images/Bestdrive.png" id="qrcodeb">
+                <!--<img src="Images/Bestdrive.png" id="qrcodeb">-->
+                <div id="qrcode3"></div>
+
                 </center>
                 </td><tr></table></center>
                     <center>
@@ -233,6 +248,7 @@
         let nor = document.getElementById("nor");
         let bt = document.getElementById("bt");
         let url = document.getElementById("url");
+        let text = document.getElementById("text");
 
         d1.addEventListener("mouseover", () => {nimmat.style.display = "block";});
         d1.addEventListener("mouseout", () => {nimmat.style.display = "none";});
@@ -246,18 +262,20 @@
         d1.addEventListener("mouseout", () => {url.style.display = "none";});
         d1.addEventListener("mouseover", () => {RAZ.style.display = "block";});
         d1.addEventListener("mouseout", () => {RAZ.style.display = "none";});
+        d1.addEventListener("mouseover", () => {text.style.display = "block";});
+        d1.addEventListener("mouseout", () => {text.style.display = "none";});
 
     </script>
 <!--Script de generation de QRcode-->
-    <script>
+    //<script>
         function creerQRC() {
-        var url = document.getElementById("url").value;
-        var qrcode = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=200x200&choe=UTF-8&chld=L|0';
-            document.getElementById("qrcode").src = qrcode;
-        var qrcodea = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=100x100&choe=UTF-8&chld=L|0';
-            document.getElementById("qrcodea").src = qrcodea;
-        var qrcodeb = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=100x100&choe=UTF-8&chld=L|0';
-            document.getElementById("qrcodeb").src = qrcodeb;
+      //  var url = document.getElementById("url").value;
+      //  var qrcode = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=200x200&choe=UTF-8&chld=L|0';
+          //  document.getElementById("qrcode").src = qrcode;
+      //  var qrcodea = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=100x100&choe=UTF-8&chld=L|0';
+        //    document.getElementById("qrcodea").src = qrcodea;
+      //  var qrcodeb = 'https://chart.googleapis.com/chart?cht=qr&chl=' + encodeURIComponent(url) + '&chs=100x100&choe=UTF-8&chld=L|0';
+      //      document.getElementById("qrcodeb").src = qrcodeb;
         var bt = document.getElementById("bt").value;
         var codbar = 'https://barcode.tec-it.com/barcode.ashx?data=' + bt +'&code=Code128&translate-esc=on';
             document.getElementById("codbar").src = codbar;
@@ -265,12 +283,6 @@
             document.getElementById("codbar1").src = codbar1;
         var codbar2 = 'https://barcode.tec-it.com/barcode.ashx?data=' + bt +'&code=Code128&translate-esc=on';
             document.getElementById("codbar2").src = codbar2;
-        }
-    </script>
-<!--Script d'impression de la page-->
-    <script>
-        function imprimer_page(){
-            window.print()
         }
     </script>
 <!--Created by Manu, Jimmy -->
